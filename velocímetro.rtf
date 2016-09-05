@@ -1,0 +1,86 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red170\green13\blue145;\red92\green38\blue153;
+\red28\green0\blue207;\red196\green26\blue22;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 //: Playground - noun: a place where people can play\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf0 \
+\cf3 import\cf0  UIKit\
+\
+\cf3 enum\cf0  velocidades : \cf4 Int\cf0 \{\
+    \cf3 case\cf0  apagado = \cf5 0\cf0 \
+    \cf3 case\cf0  velocidadBaja = \cf5 20\cf0 \
+    \cf3 case\cf0  velocidadMedia = \cf5 50\cf0 \
+    \cf3 case\cf0  velocidadAlta = \cf5 120\cf0 \
+    \
+    \cf3 init\cf0 (velocidadInicial : \cf4 velocidades\cf0 ) \{\
+        \cf3 self\cf0  = velocidadInicial\
+    \}\
+\}\
+\
+\cf3 class\cf0  Auto\{\
+    \cf3 var\cf0  velocidad : \cf4 velocidades\cf0 \
+    \cf3 var\cf0  actual = \cf5 0\cf0 \
+    \cf3 var\cf0  velocidadEnCadena = \cf6 "apagado"\cf0 \
+    \cf3 var\cf0  arranque = \cf3 true\cf0 \
+\
+    \
+    \cf3 init\cf0 () \{\
+        \cf3 self\cf0 .velocidad = velocidades.apagado\
+    \}\
+    \
+    \cf3 func\cf0  cambioDeVelocidad() -> (actual : \cf4 Int\cf0 , velocidadEnCadena : \cf4 String\cf0 ) \{\
+        \
+        \cf3 if\cf0  arranque == \cf3 true\cf0  \{\
+            arranque = \cf3 false\cf0 \
+             \cf3 return\cf0  (actual, velocidadEnCadena)\
+        \}\
+   \
+        \
+            \cf3 switch\cf0  velocidad\{\
+            \cf3 case\cf0  .apagado:\
+                velocidad = velocidades.velocidadBaja\
+                actual = velocidad.rawValue\
+                velocidadEnCadena = \cf6 "velocidadBaja"\cf0 \
+                \cf3 return\cf0  (actual, velocidadEnCadena)\
+            \cf3 case\cf0  .velocidadBaja:\
+                velocidad = velocidades.velocidadMedia\
+                actual = velocidad.rawValue\
+                velocidadEnCadena = \cf6 "velocidadMedia"\cf0 \
+                \cf3 return\cf0  (actual, velocidadEnCadena)\
+            \cf3 case\cf0  .velocidadMedia:\
+                velocidad = velocidades.velocidadAlta\
+                actual = velocidad.rawValue\
+                velocidadEnCadena = \cf6 "velocidadAlta"\cf0 \
+                \cf3 return\cf0  (actual, velocidadEnCadena)\
+            \cf3 case\cf0  .velocidadAlta:\
+                velocidad = velocidades.velocidadMedia\
+                actual = velocidad.rawValue\
+                velocidadEnCadena = \cf6 "velocidadMedia"\cf0 \
+                \cf3 return\cf0  (actual, velocidadEnCadena)\
+            \cf3 default\cf0  : velocidades.apagado\
+                 \cf3 return\cf0  (actual, velocidadEnCadena)\
+            \}\
+        \
+       \
+        \
+    \}\
+\}\
+\
+\cf3 var\cf0  auto = Auto()\
+\
+\cf3 let\cf0  numeros = \cf5 0\cf0 ...\cf5 20\cf0 \
+\
+\cf3 for\cf0  i \cf3 in\cf0  numeros\{\
+    print(i)\
+    print(auto.cambioDeVelocidad())\
+\}\
+\
+\
+\
+\
+}
